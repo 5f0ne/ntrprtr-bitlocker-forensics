@@ -1,0 +1,228 @@
+{
+    "name": "Bitlocker Metadata Header Examiner",
+    "description": "Examines Bitlocker Metadata Headers",
+    "ntrprtr": [
+        {
+            "name": " startingPoint",
+            "description": "Starting Point of Bitlocker Metadata Header",
+            "start": 0,
+            "end": 7,
+            "action": [
+                {
+                    "type": "ascii",
+                    "nonAsciiPlaceholder": "."
+                }
+            ]
+        },
+        {
+            "name": "unknown1",
+            "description": "Unknown",
+            "start": 8,
+            "end": 15,
+            "action": [
+                {
+                    "type": "hexdump",
+                    "nonAsciiPlaceholder": "."
+                }
+            ]
+        },
+        {
+            "name": "volumeSizeBytes",
+            "description": "Volume Size in Bytes",
+            "start": 16,
+            "end": 23,
+            "action": [
+                {
+                    "type": "endianess",
+                    "endianess": "little"
+                },
+                {
+                    "type": "decimal",
+                    "endianess": "little"
+                }
+            ]
+        },
+        {
+            "name": "unknown2",
+            "description": "Unknown",
+            "start": 24,
+            "end": 31,
+            "action": [
+                {
+                    "type": "hexdump",
+                    "nonAsciiPlaceholder": "."
+                }
+            ]
+        },
+        {
+            "name": "fveMetadata1",
+            "description": "FVE Metadata Block 1 - Relative Offset to Partition Start",
+            "start": 32,
+            "end": 39,
+            "action": [
+                {
+                    "type": "endianess",
+                    "endianess": "little"
+                },
+                {
+                    "type": "decimal",
+                    "endianess": "little"
+                }
+            ]
+        },
+        {
+            "name": "fveMetadata2",
+            "description": "FVE Metadata Block 2 - Relative Offset to Partition Start",
+            "start": 40,
+            "end": 47,
+            "action": [
+                {
+                    "type": "endianess",
+                    "endianess": "little"
+                },
+                {
+                    "type": "decimal",
+                    "endianess": "little"
+                }
+            ]
+        },
+        {
+            "name": "fveMetadata3",
+            "description": "FVE Metadata Block 3 - Relative Offset to Partition Start",
+            "start": 48,
+            "end": 55,
+            "action": [
+                {
+                    "type": "endianess",
+                    "endianess": "little"
+                },
+                {
+                    "type": "decimal",
+                    "endianess": "little"
+                }
+            ]
+        },
+        {
+            "name": "volumeHeaderOffset",
+            "description": "Volume Header Offset",
+            "start": 56,
+            "end": 63,
+            "action": [
+                {
+                    "type": "endianess",
+                    "endianess": "little"
+                },
+                {
+                    "type": "decimal",
+                    "endianess": "little"
+                }
+            ]
+        },
+        {
+            "name": "unknown3",
+            "description": "Unknown",
+            "start": 64,
+            "end": 79,
+            "action": [
+                {
+                    "type": "hexdump",
+                    "nonAsciiPlaceholder": "."
+                }
+            ]
+        },
+        {
+            "name": "volumeGuid",
+            "description": "Volume GUID",
+            "start": 80,
+            "end": 95
+        },
+        {
+            "name": "unknown4",
+            "description": "Unknown",
+            "start": 96,
+            "end": 99,
+            "action": [
+                {
+                    "type": "hexdump",
+                    "nonAsciiPlaceholder": "."
+                }
+            ]
+        },
+        {
+            "name": "usedEncryptionAlgorithm",
+            "description": "Used Encryption Algorithm",
+            "start": 100,
+            "end": 103,
+            "action": [
+                {
+                    "type": "equals",
+                    "endianess": "big",
+                    "noMatch": "Encryption Algorithm unknown!",
+                    "cmp": [
+                        {
+                            "value": "04800480",
+                            "description": "AES-XTS 128-bit encryption"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "timestampEncryptionCreation",
+            "description": "Timestamp of Bitlocker Encryption Creation",
+            "start": 104,
+            "end": 111,
+            "action": [
+                {
+                    "type": "endianess",
+                    "endianess": "little"
+                },
+                {
+                    "type": "win32time",
+                    "endianess": "little"
+                }
+            ]
+        },
+        {
+            "name": "lengthOfVolumeLabel",
+            "description": "Length of Volume Label",
+            "start": 112,
+            "end": 113,
+            "action": [
+                {
+                    "type": "endianess",
+                    "endianess": "little"
+                },
+                {
+                    "type": "decimal",
+                    "endianess": "little"
+                }
+            ]
+        },
+        {
+            "name": "unknown5",
+            "description": "Unknown",
+            "start": 114,
+            "end": 119,
+            "action": [
+                {
+                    "type": "hexdump",
+                    "nonAsciiPlaceholder": "."
+                }
+            ]
+        },
+        {
+            "name": "Volume Label",
+            "description": "Volume Label",
+            "start": 120,
+            "end": 190,
+            "action": [
+                {
+                    "type": "hexdump",
+                    "nonAsciiPlaceholder": "."
+                }
+            ]
+        }
+        
+    ]
+}

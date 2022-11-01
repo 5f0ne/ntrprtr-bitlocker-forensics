@@ -1,0 +1,157 @@
+{
+    "name": "Bitlocker Volume Header Examiner",
+    "description": "Examines Bitlocker Volume Headers",
+    "ntrprtr": [
+        {
+            "name": " startingPoint",
+            "description": "Starting Point of Bitlocker Partition",
+            "start": 0,
+            "end": 2
+        },
+        {
+            "name": "fsSignature",
+            "description": "File System Signature",
+            "start": 3,
+            "end": 10,
+            "action": [
+                {
+                    "type": "ascii",
+                    "nonAsciiPlaceholder": "."
+                }
+            ]
+        },
+        {
+            "name": "unknown1",
+            "description": "Unknown",
+            "start": 11,
+            "end": 70,
+            "action": [
+                {
+                    "type": "hexdump",
+                    "nonAsciiPlaceholder": "."
+                }
+            ]
+        },
+        {
+            "name": "label",
+            "description": "Volume Label",
+            "start": 71,
+            "end": 81,
+            "action": [
+                {
+                    "type": "ascii",
+                    "nonAsciiPlaceholder": "."
+                }
+            ]
+        },
+        {
+            "name": "fileSystem",
+            "description": "File System",
+            "start": 82,
+            "end": 89,
+            "action": [
+                {
+                    "type": "ascii",
+                    "nonAsciiPlaceholder": "."
+                }
+            ]
+        },
+        {
+            "name": "unknown2",
+            "description": "Unknown",
+            "start": 90,
+            "end": 159,
+            "action": [
+                {
+                    "type": "hexdump",
+                    "nonAsciiPlaceholder": "."
+                }
+            ]
+        },
+        {
+            "name": "bitlockerId",
+            "description": "Bitlocker Identifier / GUID",
+            "start": 160,
+            "end": 175
+        },
+        {
+            "name": "fveMetadata1",
+            "description": "FVE Metadata Block 1 - Relative Offset to Partition Start",
+            "start": 176,
+            "end": 183,
+            "action": [
+                {
+                    "type": "endianess",
+                    "endianess": "little"
+                },
+                {
+                    "type": "decimal",
+                    "endianess": "little"
+                }
+            ]
+        },
+        {
+            "name": "fveMetadata2",
+            "description": "FVE Metadata Block 2 - Relative Offset to Partition Start",
+            "start": 184,
+            "end": 191,
+            "action": [
+                {
+                    "type": "endianess",
+                    "endianess": "little"
+                },
+                {
+                    "type": "decimal",
+                    "endianess": "little"
+                }
+            ]
+        },
+        {
+            "name": "fveMetadata3",
+            "description": "FVE Metadata Block 3 - Relative Offset to Partition Start",
+            "start": 192,
+            "end": 199,
+            "action": [
+                {
+                    "type": "endianess",
+                    "endianess": "little"
+                },
+                {
+                    "type": "decimal",
+                    "endianess": "little"
+                }
+            ]
+        },
+        {
+            "name": "unknown3",
+            "description": "Unknown",
+            "start": 200,
+            "end": 509,
+            "action": [
+                {
+                    "type": "hexdump",
+                    "nonAsciiPlaceholder": "."
+                }
+            ]
+        },
+        {
+            "name": "signature",
+            "description": "Signature",
+            "start": 510,
+            "end": 511,
+            "action": [
+                {
+                    "type": "equals",
+                    "endianess": "big",
+                    "noMatch": "Signature invalid!",
+                    "cmp": [
+                        {
+                            "value": "55AA",
+                            "description": "Signature valid!"
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}
