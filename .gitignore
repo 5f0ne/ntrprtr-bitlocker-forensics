@@ -2,6 +2,7 @@ env/
 data/
 dist/
 build/
+todo.md
 *-setup-*
 **/__pycache__
 **/*.egg-info/
